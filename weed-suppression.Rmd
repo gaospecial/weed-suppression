@@ -58,9 +58,9 @@ wheat_promotion <- read_csv("data/wheat promotion.csv")
 weed_infestation <- read_csv("data/weed infestation.csv")
 infested_wheat <- read_csv("data/infested wheat.csv")
 head(weed_suppression) # suppress weed growth by herbicide and SynComs
-head(wheat_promotion) # promote wheat growth by SynComs
-head(weed_infestation) # 
-head(infested_wheat)
+head(wheat_promotion) # SynComs promote wheat growth 
+head(weed_infestation) # field trail of weed suppression
+head(infested_wheat) # field trail of wheat promotion
 ```
 
 The columns are:
@@ -461,84 +461,37 @@ export::graph2ppt(file="figures.ppt",append=TRUE)
 
 ```
 
-# Figure 2: application of Inoculation for testing either strains combinations have ability to enhance the growth of wheat or not {#fig-2}
+# Plant growth promotion by SynComs
+
+```{r}
+wheat_promotion
+```
+
+Figure 2: application of Inoculation for testing either strains combinations have ability to enhance the growth of wheat or not.
 
 ```{r}
 cols <- setdiff(names(wheat_promotion), 'Inoculations')
 y_labels <- c("seed_germination (%)","plant_height (cm)", "Root_length (cm)","fresh_biomass (g)","SPAD_value","chlorophyll_a (ppm)","chlorophyll_b (ppm)","carotenoid (ppm)","protein (ppm)")
-compare_means(seed_germination~Inoculations,data = wheat_promotion,ref.group="control",
-              method = "t.test")
-compare_means(plant_height~Inoculations,data = wheat_promotion,method = "anova")
-compare_means(Root_length~Inoculations,data = wheat_promotion,ref.group="control",
-              method = "t.test")
-compare_means(fresh_biomass~Inoculations,data = wheat_promotion,method = "anova")
-compare_means(SPAD_value~Inoculations,data = wheat_promotion,ref.group="control",
-              method = "t.test")
-compare_means(chlorophyll_a~Inoculations,data = wheat_promotion,ref.group="control",
-              method = "t.test")
-compare_means(chlorophyll_b~Inoculations,data = wheat_promotion,ref.group="control",
-              method = "t.test")
-compare_means(carotenoid~Inoculations,data = wheat_promotion,ref.group="control",
-              method = "t.test")
-compare_means(protein~Inoculations,data = wheat_promotion,ref.group="control",
-              method = "t.test")
 
-Map(function(x, y) {
+list_plots = Map(function(x, y) {
   ggboxplot(data = wheat_promotion, x = "Inoculations", y = x,
             ylab = y, xlab = "Inoculations",
             add = "jitter")+
-    stat_compare_means(method = "anova")+
-    stat_compare_means(label = "p.signif", method = "t.test",
+    stat_compare_means(label = "p.signif", 
+                       method = "t.test",
                      ref.group = "control")+
     rotate_x_text(angle = 40)+
-    theme(legend.position = "right")+
-    theme(legend.title = element_text(color="black",size = 10,
-                                      face = "bold"))+
-    theme(legend.text = element_text(color = "black",size = 8))
+    labs(x="") +
+    theme(legend.position = "right",
+          legend.title = element_text(color="black",size = 10,
+                                      face = "bold"),
+          legend.text = element_text(color = "black",size = 8)) +
+    scale_y_continuous(expand = expansion(0.2))
     
-}, cols, y_labels) -> list_plots
-list_plots$seed_germination
-ggsave("figure 2.tiff",path = "figures")
-export::graph2ppt(file="figures.ppt",append=TRUE)
+}, cols, y_labels)
 
-list_plots$plant_height
-ggsave("figure 2.tiff",path = "figures")
-export::graph2ppt(file="figures.ppt",append=TRUE)
-
-list_plots$Root_length
-ggsave("figure 2.tiff",path = "figures")
-export::graph2ppt(file="figures.ppt",append=TRUE)
-
-list_plots$fresh_biomass
-ggsave("figure 2.tiff",path = "figures")
-export::graph2ppt(file="figures.ppt",append=TRUE)
-
-list_plots$SPAD_value
-ggsave("figure 2.tiff",path = "figures")
-export::graph2ppt(file="figures.ppt",append=TRUE)
-
-list_plots$chlorophyll_a
-ggsave("figure 2.tiff",path = "figures")
-export::graph2ppt(file="figures.ppt",append=TRUE)
-
-list_plots$chlorophyll_b
-ggsave("figure 2.tiff",path = "figures")
-export::graph2ppt(file="figures.ppt",append=TRUE)
-
-list_plots$carotenoid
-ggsave("figure 2.tiff",path = "figures")
-export::graph2ppt(file="figures.ppt",append=TRUE)
-
-list_plots$protein
-ggsave("figure 2.tiff",path = "figures")
-export::graph2ppt(file="figures.ppt",append=TRUE)
-
-ggarrange(plotlist = list_plots,
-          common.legend = TRUE,
-          labels = c("A","B","C","D","E","F","G","H","I"))
-ggsave("figure 2.tiff",path = "figures")
-export::graph2ppt(file="figures.ppt",append=TRUE)
-
+cowplot::plot_grid(plotlist = list_plots,
+          labels = "AUTO")
 
 ```
 
