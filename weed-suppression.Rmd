@@ -16,6 +16,8 @@ output:
     toc_depth: '3'
 ---
 
+**Note**: Knit this document to see the results. ---by gaoch
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(
   fig.width = 8,
@@ -28,6 +30,28 @@ knitr::opts_chunk$set(
   fig.align = "center",
   out.width = "70%"
 )
+```
+
+Autogeneration of png/pdf/pptx format output for figures.
+
+```{r}
+knitr::opts_chunk$set(
+  dev = c("png", "pdf", "pptx"),
+  fig.ext = c("png", "pdf", "pptx")
+)
+# a pptx device
+pptx = function(file = knitr::fig_path(".pptx"), width, height){
+  export::graph2ppt(file = file, width = width, height = height)
+}
+# add opts_hooks
+knitr::opts_hooks$set(dev = function(options){
+  if (length(options$dev) > 1){
+    x = paste0("[", options$dev, "](", knitr::fig_path(options$dev), ")",
+               collapse = " | ")
+    options$fig.cap = paste(options$fig.cap, x, sep = " ")
+  }
+  options
+})
 ```
 
 # Load packages
