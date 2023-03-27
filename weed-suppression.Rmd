@@ -225,6 +225,39 @@ plot_recipe_effect = function(df, value){
 
 Firstly, we investigated the influence of AB combinations and chemical herbicides on *P. minor* growth and phenological parameter reduction. The experiments were carried out in green house, and only weed were planted.
 
+
+## Weed growth
+
+### Seed germination
+
+```{r}
+plot_recipe_effect(df, value = "seed_germination")
+```
+
+### Plant height
+
+```{r}
+plot_recipe_effect(df, value = "plant_height")
+```
+
+### Root length
+
+```{r}
+plot_recipe_effect(df, value = "root_length")
+```
+
+### Fresh biomass
+
+```{r}
+plot_recipe_effect(df, value = "fresh_biomass")
+```
+
+### Protein content
+
+```{r}
+plot_recipe_effect(df, value = "protein")
+```
+
 ## Weed pigments
 
 Plants contain several different pigments, including chlorophylls, carotenoids, and flavonoids. Chlorophylls are the primary pigments responsible for the green color of plants and are essential for photosynthesis. Carotenoids, which include beta-carotene, lycopene, lutein, and zeaxanthin, are responsible for the yellow, orange, and red colors of many fruits and vegetables, and also serve as antioxidants. Flavonoids, which include anthocyanins, flavonols, and flavones, are responsible for the red, blue, and purple colors of many fruits and flowers, and also play a role in plant defense against environmental stresses.
@@ -233,7 +266,7 @@ Plants contain several different pigments, including chlorophylls, carotenoids, 
 
 SPAD value is a measure provided by the SPAD-502Plus, which is a portable, non-destructive measuring device for the chlorophyll content of leaves.
 
-```{r include=FALSE, fig.cap="Product of SPAD-502+"}
+```{r echo=FALSE, fig.cap="Product of SPAD-502+"}
 knitr::include_graphics("https://vnote-1251564393.cos.ap-chengdu.myqcloud.com/20230326110719.png")
 ```
 
@@ -269,39 +302,6 @@ Carotenoids are a group of natural pigments that are found in many plants, algae
 ```{r}
 plot_recipe_effect(df, value = "caroteniod")
 ```
-
-## Weed growth
-
-### Seed germination
-
-```{r}
-plot_recipe_effect(df, value = "seed_germination")
-```
-
-### Plant height
-
-```{r}
-plot_recipe_effect(df, value = "plant_height")
-```
-
-### Root length
-
-```{r}
-plot_recipe_effect(df, value = "root_length")
-```
-
-### Fresh biomass
-
-```{r}
-plot_recipe_effect(df, value = "fresh_biomass")
-```
-
-### Protein content
-
-```{r}
-plot_recipe_effect(df, value = "protein")
-```
-
 
 
 # Plant growth promotion by SynComs
