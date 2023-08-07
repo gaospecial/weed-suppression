@@ -2,12 +2,13 @@
 
 **Note by gaoch**:
 
--   Knit this document to see the results.
+-   Knit the Rmd document to see the results.
 -   Project files are now be organized as a Git repository. The remote
     server address is located at
-    <https://gitee.com/soilmicro/weed-suppression>. If you know Git, you
-    may clone it from that remote repository after joining in the
-    soilmicro organization/company.
+    [Gitee](https://gitee.com/soilmicro/weed-suppression) or
+    [GitHub](https://github.com/gaospecial/weed-suppression). If you
+    know Git, you may clone it from that remote repository after joining
+    in the soilmicro organization/company \[Only Gitee Required\].
 
 From:
 
