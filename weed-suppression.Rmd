@@ -1,16 +1,16 @@
 ---
 title: "Evaluating effectiveness of controlling little seed canary grass by using chemical herbicides and allelopathic integration"
-author: "aminahadayat05@gmail.com"
+author: c("aminahadayat05@gmail.com", "gaospecial@gmail.com")
 date: "2023-02-21"
 output:
+  md_document:
+    variant: markdown_github
   html_document:
     toc: yes
     toc_depth: 3
     toc_float:
       collapsed: no
       smooth_scroll: no
-  md_document:
-    variant: markdown_github
   pdf_document:
     toc: yes
     toc_depth: '3'
@@ -38,7 +38,7 @@ knitr::opts_chunk$set(
 
 Autogeneration of png/pdf/pptx format output for figures.
 
-```{r}
+```{r eval=knitr::is_html_output(), include=FALSE}
 knitr::opts_chunk$set(
   dev = c("png", "pdf", "pptx"),
   fig.ext = c("png", "pdf", "pptx")
